@@ -5,7 +5,6 @@ const getQuoteData = async () => {
     let responseTwo = await fetch("https://api.quotable.io/random");
     let secondQuote = await responseTwo.json();
     if (response.ok) {
-      //console.log(firstQuote.content, " - ", secondQuote.author);
       return [firstQuote.content, secondQuote.author];
     } else {
       console.log("API Error");
@@ -33,10 +32,8 @@ const sayMessage = async (message, generateNew) => {
   if (!message) {
     try {
       fakeQuote = await getQuoteData();
-      //console.log("message = ", fakeQuote[0]);
       message = fakeQuote[0];
       console.log("generated message");
-      // Now you can use the result variable to do further processing
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -72,7 +69,6 @@ const sayMessage = async (message, generateNew) => {
       textDiv.setAttribute("id", "messages");
 
       let messageText = document.createElement("div");
-      //messageText.id = "message";
       messageText.setAttribute("id", "message");
       messageText.textContent = fakeQuote[0];
       messageText.classList.add(
@@ -91,7 +87,6 @@ const sayMessage = async (message, generateNew) => {
       }, 300);
 
       let authorText = document.createElement("div");
-      //authorText.id = "author";
       authorText.setAttribute("id", "author");
       authorText.textContent = `— ${fakeQuote[1]}`;
       authorText.classList.add(
@@ -111,8 +106,6 @@ const sayMessage = async (message, generateNew) => {
       textDiv.appendChild(messageText);
       textDiv.appendChild(authorText);
     } else {
-      //set fade out animations
-      //set timeout
       console.log("cleanup");
       let textUI = document.getElementById("messages");
       let imageUI = document.getElementById("portrait");
@@ -174,7 +167,6 @@ function begin() {
 }
 
 let msg = new SpeechSynthesisUtterance();
-//let voices = window.speechSynthesis.getVoices();
 let messageVoice = getRandomVoice();
 msg.voice = messageVoice;
 messagePitch = Math.random(2);
